@@ -16,7 +16,6 @@
   }
   .container { max-width: 1000px; margin: 0 auto; }
 
-  /* ===== شريط علوي ===== */
   .topbar {
     display: flex;
     justify-content: space-between;
@@ -25,11 +24,7 @@
     border-bottom: 1px solid #30363d;
     margin-bottom: 40px;
   }
-  .topbar .logo {
-    font-size: 1.2em;
-    color: #58a6ff;
-    font-weight: bold;
-  }
+  .topbar .logo { font-size: 1.2em; color: #58a6ff; font-weight: bold; }
   .topbar .back {
     color: #8b949e;
     text-decoration: none;
@@ -38,7 +33,6 @@
   }
   .topbar .back:hover { color: #58a6ff; }
 
-  /* ===== العنوان ===== */
   h1 {
     text-align: center;
     color: #58a6ff;
@@ -51,7 +45,6 @@
     margin-bottom: 50px;
   }
 
-  /* ===== شبكة المواد ===== */
   .materials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -68,33 +61,15 @@
     position: relative;
     overflow: hidden;
   }
-  .material-card.active {
-    border-color: #58a6ff;
-    cursor: pointer;
-  }
+  .material-card.active { border-color: #58a6ff; cursor: pointer; }
   .material-card.active:hover {
     transform: translateY(-8px);
     box-shadow: 0 10px 30px rgba(88, 166, 255, 0.2);
   }
-  .material-card.locked {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  .material-card .icon {
-    font-size: 4em;
-    margin-bottom: 20px;
-    display: block;
-  }
-  .material-card h2 {
-    color: #e6edf3;
-    font-size: 1.4em;
-    margin-bottom: 10px;
-  }
-  .material-card .status {
-    font-size: 0.9em;
-    color: #8b949e;
-    margin-bottom: 20px;
-  }
+  .material-card.locked { opacity: 0.5; cursor: not-allowed; }
+  .material-card .icon { font-size: 4em; margin-bottom: 20px; display: block; }
+  .material-card h2 { color: #e6edf3; font-size: 1.4em; margin-bottom: 10px; }
+  .material-card .status { font-size: 0.9em; color: #8b949e; margin-bottom: 20px; }
   .material-card.active .status { color: #58a6ff; }
   .material-card .enter-btn {
     display: inline-block;
@@ -106,16 +81,13 @@
     font-weight: bold;
     transition: all 0.3s;
   }
-  .material-card.active .enter-btn:hover {
-    background: #79c0ff;
-  }
+  .material-card.active .enter-btn:hover { background: #79c0ff; }
   .material-card.locked .enter-btn {
     background: #30363d;
     color: #484f58;
     cursor: not-allowed;
   }
 
-  /* ===== قسم دروس الرياضيات ===== */
   .lessons-section {
     background: #161b22;
     border: 1px solid #30363d;
@@ -131,11 +103,7 @@
     align-items: center;
     gap: 10px;
   }
-  .lessons-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
+  .lessons-list { display: flex; flex-direction: column; gap: 12px; }
   .lesson-item {
     display: flex;
     justify-content: space-between;
@@ -148,23 +116,10 @@
     text-decoration: none;
     color: #c9d1d9;
   }
-  .lesson-item:hover {
-    border-color: #58a6ff;
-    background: #1c2128;
-  }
-  .lesson-item .lesson-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  .lesson-item .lesson-num {
-    color: #58a6ff;
-    font-weight: bold;
-    font-size: 1.1em;
-  }
-  .lesson-item .lesson-title {
-    font-size: 1.05em;
-  }
+  .lesson-item:hover { border-color: #58a6ff; background: #1c2128; }
+  .lesson-item .lesson-info { display: flex; align-items: center; gap: 15px; }
+  .lesson-item .lesson-num { color: #58a6ff; font-weight: bold; font-size: 1.1em; }
+  .lesson-item .lesson-title { font-size: 1.05em; }
   .lesson-item .lesson-status {
     font-size: 0.85em;
     color: #484f58;
@@ -172,12 +127,8 @@
     border: 1px solid #30363d;
     border-radius: 20px;
   }
-  .lesson-item.available .lesson-status {
-    color: #3fb950;
-    border-color: #3fb950;
-  }
+  .lesson-item.available .lesson-status { color: #3fb950; border-color: #3fb950; }
 
-  /* ===== التذييل ===== */
   footer {
     text-align: center;
     padding: 40px 20px;
@@ -191,20 +142,16 @@
 <body>
 <div class="container">
 
-  <!-- شريط علوي -->
   <div class="topbar">
     <div class="logo">🧠 مختبر بناء العقل</div>
     <a href="index.html" class="back">→ العودة للرئيسية</a>
   </div>
 
-  <!-- العنوان -->
   <h1>اختر مادتك</h1>
   <p class="subtitle">ثلاث مواد. تدريبات بصرية. تكرار حتى البرمجة.</p>
 
-  <!-- شبكة المواد -->
   <div class="materials-grid">
 
-    <!-- الرياضيات (نشطة) -->
     <div class="material-card active">
       <span class="icon">📐</span>
       <h2>الرياضيات</h2>
@@ -212,7 +159,6 @@
       <a href="#math-lessons" class="enter-btn">ادخل ←</a>
     </div>
 
-    <!-- الفيزياء (قيد الإنشاء) -->
     <div class="material-card locked">
       <span class="icon">⚛️</span>
       <h2>الفيزياء</h2>
@@ -220,7 +166,6 @@
       <a href="#" class="enter-btn">قريباً</a>
     </div>
 
-    <!-- الكيمياء (قيد الإنشاء) -->
     <div class="material-card locked">
       <span class="icon">🧪</span>
       <h2>الكيمياء</h2>
@@ -230,15 +175,14 @@
 
   </div>
 
-  <!-- قسم دروس الرياضيات -->
   <div class="lessons-section" id="math-lessons">
     <h3>📐 دروس الرياضيات</h3>
     <div class="lessons-list">
 
-      <a href="#" class="lesson-item available">
+      <a href="lesson-01.html" class="lesson-item available">
         <div class="lesson-info">
           <span class="lesson-num">01</span>
-          <span class="lesson-title">المعادلات الخطية: y = ax + b</span>
+          <span class="lesson-title">استعمال المتطابقات المثلية</span>
         </div>
         <span class="lesson-status">متاح</span>
       </a>
@@ -270,7 +214,6 @@
     </div>
   </div>
 
-  <!-- التذييل -->
   <footer>
     <p>© 2026 مختبر بناء العقل | Mind Forge</p>
   </footer>
