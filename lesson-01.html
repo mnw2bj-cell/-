@@ -16,6 +16,7 @@
   }
   .container { max-width: 900px; margin: 0 auto; }
 
+  /* ===== شريط علوي ===== */
   .topbar {
     display: flex;
     justify-content: space-between;
@@ -33,6 +34,7 @@
   }
   .topbar .back:hover { color: #58a6ff; }
 
+  /* ===== ترويسة الدرس ===== */
   .lesson-header {
     text-align: center;
     padding: 30px 20px;
@@ -55,6 +57,7 @@
   }
   .lesson-header .meta { color: #8b949e; font-size: 0.9em; }
 
+  /* ===== بطاقة القاعدة ===== */
   .rule-box {
     background: linear-gradient(135deg, #1c2128, #161b22);
     border: 1px solid #58a6ff;
@@ -63,15 +66,16 @@
     text-align: center;
     margin-bottom: 40px;
   }
-  .rule-box h2 { color: #58a6ff; font-size: 1.1em; margin-bottom: 15px; }
+  .rule-box h2 { color: #58a6ff; font-size: 1.1em; margin-bottom: 20px; }
   .rule-box .formula {
-    font-size: 1.6em;
+    font-size: 1.8em;
     color: #e6edf3;
-    font-family: 'Courier New', monospace;
+    font-family: 'Cambria', 'Times New Roman', serif;
     direction: ltr;
     letter-spacing: 2px;
   }
 
+  /* ===== الأقسام ===== */
   .section-title {
     font-size: 1.4em;
     color: #58a6ff;
@@ -81,6 +85,7 @@
     gap: 10px;
   }
 
+  /* ===== شبكة الأرباع ===== */
   .quadrants-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -102,7 +107,7 @@
   .quadrant .q-symbol { font-size: 2.5em; margin-bottom: 10px; display: block; }
   .quadrant .q-title { color: #58a6ff; font-weight: bold; margin-bottom: 5px; }
   .quadrant .q-signs {
-    font-family: 'Courier New', monospace;
+    font-family: 'Cambria', serif;
     font-size: 1.1em;
     direction: ltr;
   }
@@ -115,6 +120,27 @@
   .quadrant.q3 .q-signs { color: #f85149; }
   .quadrant.q4 .q-signs { color: #58a6ff; }
 
+  /* ===== نظام الكسور ===== */
+  .frac {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 5px;
+    font-family: 'Cambria', 'Times New Roman', serif;
+  }
+  .frac .num {
+    display: block;
+    border-bottom: 1px solid currentColor;
+    padding: 0 6px 2px 6px;
+    line-height: 1.2;
+  }
+  .frac .den {
+    display: block;
+    padding: 2px 6px 0 6px;
+    line-height: 1.2;
+  }
+
+  /* ===== الجولات ===== */
   .rounds-container {
     display: flex;
     flex-direction: column;
@@ -126,9 +152,9 @@
     background: #161b22;
     border: 1px solid #30363d;
     border-radius: 10px;
-    padding: 20px;
+    padding: 25px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
     transition: all 0.3s;
   }
@@ -144,19 +170,33 @@
     justify-content: center;
     font-weight: bold;
     flex-shrink: 0;
+    margin-top: 5px;
   }
   .round .round-content {
     flex: 1;
-    font-family: 'Courier New', monospace;
+    font-family: 'Cambria', 'Times New Roman', serif;
+    font-size: 1.2em;
+    line-height: 2.4;
     direction: ltr;
     text-align: left;
-    font-size: 1.1em;
-    line-height: 2;
   }
   .round .highlight { color: #58a6ff; font-weight: bold; }
   .round .plus { color: #3fb950; font-weight: bold; }
   .round .minus { color: #f85149; font-weight: bold; }
+  .round .step {
+    display: block;
+    margin: 8px 0;
+  }
+  .round .arabic {
+    direction: rtl;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    color: #8b949e;
+    font-size: 0.85em;
+    display: block;
+    margin: 5px 0;
+  }
 
+  /* ===== القاعدة المكتشفة ===== */
   .discovered-rule {
     text-align: center;
     padding: 50px 20px;
@@ -173,6 +213,7 @@
     line-height: 1.8;
   }
 
+  /* ===== أزرار التحكم ===== */
   .controls {
     display: flex;
     gap: 15px;
@@ -213,25 +254,26 @@
 <body>
 <div class="container">
 
+  <!-- شريط علوي -->
   <div class="topbar">
     <div class="logo">🧠 مختبر بناء العقل</div>
     <a href="materials.html" class="back">→ العودة للمواد</a>
   </div>
 
+  <!-- ترويسة الدرس -->
   <div class="lesson-header">
     <span class="badge">ثالث ثانوي • رياضيات</span>
     <h1>الدرس 01: استعمال المتطابقات المثلية</h1>
     <div class="meta">كيف نجد قيمة دالة مثلثية بمعلومية أخرى؟</div>
   </div>
 
+  <!-- بطاقة القاعدة -->
   <div class="rule-box">
     <h2>🔑 المفتاح الأساسي</h2>
-    <div class="formula">S² + C² = 1</div>
-    <p style="color: #8b949e; margin-top: 15px; font-size: 0.9em;">
-      حيث S = sin(θ) و C = cos(θ)
-    </p>
+    <div class="formula">sin²θ + cos²θ = 1</div>
   </div>
 
+  <!-- شبكة الأرباع -->
   <h2 class="section-title">🧭 الإشارات حسب الربع</h2>
   <div class="quadrants-grid">
     <div class="quadrant q2">
@@ -256,76 +298,98 @@
     </div>
   </div>
 
+  <!-- الجولات -->
   <h2 class="section-title">🎯 الجولات التدريبية</h2>
   <div class="rounds-container">
 
+    <!-- الجولة 1 -->
     <div class="round">
       <div class="round-num">1</div>
       <div class="round-content">
-        إذا كان <span class="highlight">sin θ = 1/4</span> و θ في <span class="highlight">◱</span> (الربع الثاني)<br>
-        C² = 1 − (1/4)² = 1 − 1/16 = <span class="highlight">15/16</span><br>
-        C = ±√15/4<br>
-        لكن في ◱ الإشارة <span class="minus">سالبة</span><br>
-        إذن: <span class="minus">cos θ = −√15/4</span>
+        <span class="step">sin θ = <span class="frac"><span class="num">1</span><span class="den">4</span></span> , θ in ◱</span>
+        <span class="arabic">sin معطى، θ في الربع الثاني</span>
+        <span class="step">cos²θ = 1 − (<span class="frac"><span class="num">1</span><span class="den">4</span></span>)² = 1 − <span class="frac"><span class="num">1</span><span class="den">16</span></span> = <span class="highlight"><span class="frac"><span class="num">15</span><span class="den">16</span></span></span></span>
+        <span class="arabic">نعوض في المتطابقة</span>
+        <span class="step">cos θ = ± <span class="frac"><span class="num">√15</span><span class="den">4</span></span></span>
+        <span class="arabic">نأخذ الجذر</span>
+        <span class="step">في ◱ : cos <span class="minus">−</span></span>
+        <span class="arabic">الإشارة سالبة في الربع الثاني</span>
+        <span class="step">⟹ cos θ = <span class="minus">−</span> <span class="frac"><span class="num">√15</span><span class="den">4</span></span></span>
       </div>
     </div>
 
+    <!-- الجولة 2 -->
     <div class="round">
       <div class="round-num">2</div>
       <div class="round-content">
-        إذا كان <span class="highlight">sin θ = 1/2</span> و θ في <span class="highlight">◰</span> (الربع الأول)<br>
-        C² = 1 − (1/2)² = 1 − 1/4 = <span class="highlight">3/4</span><br>
-        C = ±√3/2<br>
-        في ◰ الإشارة <span class="plus">موجبة</span><br>
-        إذن: <span class="plus">cos θ = +√3/2</span>
+        <span class="step">sin θ = <span class="frac"><span class="num">1</span><span class="den">2</span></span> , θ in ◰</span>
+        <span class="arabic">sin معطى، θ في الربع الأول</span>
+        <span class="step">cos²θ = 1 − (<span class="frac"><span class="num">1</span><span class="den">2</span></span>)² = 1 − <span class="frac"><span class="num">1</span><span class="den">4</span></span> = <span class="highlight"><span class="frac"><span class="num">3</span><span class="den">4</span></span></span></span>
+        <span class="step">cos θ = ± <span class="frac"><span class="num">√3</span><span class="den">2</span></span></span>
+        <span class="step">في ◰ : cos <span class="plus">+</span></span>
+        <span class="step">⟹ cos θ = <span class="plus">+</span> <span class="frac"><span class="num">√3</span><span class="den">2</span></span></span>
       </div>
     </div>
 
+    <!-- الجولة 3 -->
     <div class="round">
       <div class="round-num">3</div>
       <div class="round-content">
-        إذا كان <span class="highlight">sin θ = 1/3</span> و θ في <span class="highlight">◲</span> (الربع الثالث)<br>
-        C² = 1 − (1/3)² = 1 − 1/9 = <span class="highlight">8/9</span><br>
-        C = ±√8/3<br>
-        في ◲ الإشارة <span class="minus">سالبة</span><br>
-        إذن: <span class="minus">cos θ = −√8/3</span>
+        <span class="step">sin θ = <span class="frac"><span class="num">1</span><span class="den">3</span></span> , θ in ◲</span>
+        <span class="arabic">sin معطى، θ في الربع الثالث</span>
+        <span class="step">cos²θ = 1 − (<span class="frac"><span class="num">1</span><span class="den">3</span></span>)² = 1 − <span class="frac"><span class="num">1</span><span class="den">9</span></span> = <span class="highlight"><span class="frac"><span class="num">8</span><span class="den">9</span></span></span></span>
+        <span class="step">cos θ = ± <span class="frac"><span class="num">√8</span><span class="den">3</span></span></span>
+        <span class="step">في ◲ : cos <span class="minus">−</span></span>
+        <span class="step">⟹ cos θ = <span class="minus">−</span> <span class="frac"><span class="num">√8</span><span class="den">3</span></span></span>
       </div>
     </div>
 
+    <!-- الجولة 4 -->
     <div class="round">
       <div class="round-num">4</div>
       <div class="round-content">
-        إذا كان <span class="highlight">sin θ = 3/5</span> و θ في <span class="highlight">◳</span> (الربع الرابع)<br>
-        C² = 1 − (3/5)² = 1 − 9/25 = <span class="highlight">16/25</span><br>
-        C = ±4/5<br>
-        في ◳ الإشارة <span class="plus">موجبة</span><br>
-        إذن: <span class="plus">cos θ = +4/5</span>
+        <span class="step">sin θ = <span class="frac"><span class="num">3</span><span class="den">5</span></span> , θ in ◳</span>
+        <span class="arabic">sin معطى، θ في الربع الرابع</span>
+        <span class="step">cos²θ = 1 − (<span class="frac"><span class="num">3</span><span class="den">5</span></span>)² = 1 − <span class="frac"><span class="num">9</span><span class="den">25</span></span> = <span class="highlight"><span class="frac"><span class="num">16</span><span class="den">25</span></span></span></span>
+        <span class="step">cos θ = ± <span class="frac"><span class="num">4</span><span class="den">5</span></span></span>
+        <span class="step">في ◳ : cos <span class="plus">+</span></span>
+        <span class="step">⟹ cos θ = <span class="plus">+</span> <span class="frac"><span class="num">4</span><span class="den">5</span></span></span>
       </div>
     </div>
 
+    <!-- الجولة 5 -->
     <div class="round">
       <div class="round-num">5</div>
       <div class="round-content">
-        إذا كان <span class="highlight">sin θ = 5/13</span> و θ في <span class="highlight">◱</span> (الربع الثاني)<br>
-        C² = 1 − (5/13)² = 1 − 25/169 = <span class="highlight">144/169</span><br>
-        C = ±12/13<br>
-        في ◱ الإشارة <span class="minus">سالبة</span><br>
-        إذن: <span class="minus">cos θ = −12/13</span>
+        <span class="step">sin θ = <span class="frac"><span class="num">5</span><span class="den">13</span></span> , θ in ◱</span>
+        <span class="arabic">sin معطى، θ في الربع الثاني</span>
+        <span class="step">cos²θ = 1 − (<span class="frac"><span class="num">5</span><span class="den">13</span></span>)² = 1 − <span class="frac"><span class="num">25</span><span class="den">169</span></span> = <span class="highlight"><span class="frac"><span class="num">144</span><span class="den">169</span></span></span></span>
+        <span class="step">cos θ = ± <span class="frac"><span class="num">12</span><span class="den">13</span></span></span>
+        <span class="step">في ◱ : cos <span class="minus">−</span></span>
+        <span class="step">⟹ cos θ = <span class="minus">−</span> <span class="frac"><span class="num">12</span><span class="den">13</span></span></span>
       </div>
     </div>
 
   </div>
 
+  <!-- القاعدة المكتشفة -->
   <div class="discovered-rule">
     <div class="label">✨ القاعدة التي اكتشفها عقلك</div>
     <p>"sin يعطيك cos.<br>الربع يحدد الإشارة.<br>لا تحفظ، فقط انظر إلى ◱ ◰ ◲ ◳."</p>
   </div>
 
+  <!-- أزرار التحكم -->
   <div class="controls">
     <button class="btn btn-primary" onclick="location.reload()">🔄 أعد التدريب</button>
     <a href="materials.html" class="btn btn-secondary">← العودة للمواد</a>
   </div>
 
+  <!-- التذييل -->
   <footer>
     <p>© 2026 مختبر بناء العقل | Mind Forge</p>
-    <p style="margin-top: 10px;">بُني ليبرمج العقل، لا ليعلم
+    <p style="margin-top: 10px;">بُني ليبرمج العقل، لا ليعلمه.</p>
+  </footer>
+
+</div>
+</body>
+</html>
