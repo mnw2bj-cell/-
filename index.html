@@ -3,201 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مختبر بناء العقل | Mind Forge</title>
+<title>المواد | مختبر بناء العقل</title>
 <style>
-  /* ===== الأساسيات ===== */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
     background: #0d1117;
     color: #e6edf3;
     line-height: 1.8;
     padding: 20px;
+    min-height: 100vh;
   }
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-  }
+  .container { max-width: 1000px; margin: 0 auto; }
 
-  /* ===== الترويسة ===== */
-  header {
-    text-align: center;
-    padding: 60px 20px 40px;
+  /* ===== شريط علوي ===== */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
     border-bottom: 1px solid #30363d;
+    margin-bottom: 40px;
   }
-  header h1 {
-    font-size: 2.5em;
-    color: #58a6ff;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
-  }
-  header .subtitle {
+  .topbar .logo {
     font-size: 1.2em;
-    color: #8b949e;
+    color: #58a6ff;
+    font-weight: bold;
   }
-  header .tagline {
-    margin-top: 20px;
-    font-size: 1.1em;
-    color: #c9d1d9;
-    font-style: italic;
+  .topbar .back {
+    color: #8b949e;
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: color 0.3s;
+  }
+  .topbar .back:hover { color: #58a6ff; }
+
+  /* ===== العنوان ===== */
+  h1 {
+    text-align: center;
+    color: #58a6ff;
+    font-size: 2.2em;
+    margin-bottom: 15px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #8b949e;
+    margin-bottom: 50px;
   }
 
-  /* ===== الأقسام ===== */
-  section {
-    padding: 50px 20px;
-    border-bottom: 1px solid #21262d;
+  /* ===== شبكة المواد ===== */
+  .materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 60px;
   }
-  section h2 {
-    font-size: 1.8em;
+  .material-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 35px 25px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .material-card.active {
+    border-color: #58a6ff;
+    cursor: pointer;
+  }
+  .material-card.active:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(88, 166, 255, 0.2);
+  }
+  .material-card.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .material-card .icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .material-card h2 {
+    color: #e6edf3;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+  }
+  .material-card .status {
+    font-size: 0.9em;
+    color: #8b949e;
+    margin-bottom: 20px;
+  }
+  .material-card.active .status { color: #58a6ff; }
+  .material-card .enter-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #58a6ff;
+    color: #0d1117;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+  .material-card.active .enter-btn:hover {
+    background: #79c0ff;
+  }
+  .material-card.locked .enter-btn {
+    background: #30363d;
+    color: #484f58;
+    cursor: not-allowed;
+  }
+
+  /* ===== قسم دروس الرياضيات ===== */
+  .lessons-section {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 35px;
+    margin-top: 40px;
+  }
+  .lessons-section h3 {
     color: #58a6ff;
-    margin-bottom: 30px;
+    font-size: 1.4em;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .lessons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .lesson-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    background: #0d1117;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: #c9d1d9;
+  }
+  .lesson-item:hover {
+    border-color: #58a6ff;
+    background: #1c2128;
+  }
+  .lesson-item .lesson-info {
     display: flex;
     align-items: center;
     gap: 15px;
   }
-  section h2::before {
-    content: '';
-    width: 6px;
-    height: 30px;
-    background: #58a6ff;
-    border-radius: 3px;
-  }
-
-  /* ===== الخطوات الثلاث ===== */
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-  }
-  .step {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 25px;
-    transition: transform 0.3s;
-  }
-  .step:hover {
-    transform: translateY(-5px);
-    border-color: #58a6ff;
-  }
-  .step .num {
-    font-size: 2.5em;
+  .lesson-item .lesson-num {
     color: #58a6ff;
     font-weight: bold;
-    margin-bottom: 15px;
-  }
-  .step h3 {
-    color: #e6edf3;
-    margin-bottom: 10px;
-    font-size: 1.2em;
-  }
-  .step p {
-    color: #8b949e;
-    font-size: 0.95em;
-  }
-
-  /* ===== معرض الرموز ===== */
-  .symbols-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 20px;
-  }
-  .symbol-card {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 25px 15px;
-    text-align: center;
-    transition: all 0.3s;
-  }
-  .symbol-card:hover {
-    border-color: #58a6ff;
-    background: #1c2128;
-  }
-  .symbol-card .glyph {
-    font-size: 2.5em;
-    margin-bottom: 15px;
-    color: #58a6ff;
-    display: block;
-  }
-  .symbol-card .meaning {
-    font-size: 0.9em;
-    color: #8b949e;
-  }
-
-  /* ===== القوالب ===== */
-  .templates {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
-  .template {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 25px;
-  }
-  .template h3 {
-    color: #58a6ff;
-    margin-bottom: 15px;
-    font-size: 1.3em;
-  }
-  .template .desc {
-    color: #8b949e;
-    margin-bottom: 20px;
-    font-size: 0.95em;
-  }
-  .template pre {
-    background: #0d1117;
-    border: 1px solid #21262d;
-    border-radius: 8px;
-    padding: 20px;
-    font-family: 'Courier New', monospace;
     font-size: 1.1em;
-    color: #c9d1d9;
-    direction: ltr;
-    text-align: left;
-    overflow-x: auto;
-    line-height: 1.6;
   }
-
-  /* ===== القاعدة الذهبية ===== */
-  .golden-rule {
-    text-align: center;
-    padding: 60px 20px;
-    background: linear-gradient(135deg, #161b22 0%, #1c2128 100%);
-    border-radius: 15px;
-    border: 1px solid #58a6ff;
-    margin: 40px 0;
+  .lesson-item .lesson-title {
+    font-size: 1.05em;
   }
-  .golden-rule p {
-    font-size: 1.5em;
-    color: #58a6ff;
-    font-weight: bold;
-    line-height: 1.8;
+  .lesson-item .lesson-status {
+    font-size: 0.85em;
+    color: #484f58;
+    padding: 4px 12px;
+    border: 1px solid #30363d;
+    border-radius: 20px;
   }
-
-  /* ===== زر البدء ===== */
-  .start-btn {
-    display: block;
-    width: fit-content;
-    margin: 40px auto;
-    padding: 18px 50px;
-    background: #58a6ff;
-    color: #0d1117;
-    text-decoration: none;
-    border-radius: 10px;
-    font-size: 1.2em;
-    font-weight: bold;
-    transition: all 0.3s;
-  }
-  .start-btn:hover {
-    background: #79c0ff;
-    transform: scale(1.05);
+  .lesson-item.available .lesson-status {
+    color: #3fb950;
+    border-color: #3fb950;
   }
 
   /* ===== التذييل ===== */
@@ -206,136 +183,96 @@
     padding: 40px 20px;
     color: #484f58;
     font-size: 0.9em;
+    margin-top: 60px;
+    border-top: 1px solid #21262d;
   }
 </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- الترويسة -->
-  <header>
-    <h1>🧠 مختبر بناء العقل</h1>
-    <div class="subtitle">Mind Forge</div>
-    <div class="tagline">"لا نشرح. نكرر. حتى يتعلم العقل بنفسه."</div>
-  </header>
-
-  <!-- المقدمة -->
-  <section>
-    <h2>ما هذا الموقع؟</h2>
-    <p style="font-size: 1.1em; color: #c9d1d9;">
-      هذا ليس موقعاً تعليمياً تقليدياً. لا يوجد شروحات طويلة، ولا فقرات أكاديمية.
-      هنا، كل درس يتحول إلى <strong style="color:#58a6ff;">تدريب بصري</strong> يتكرر
-      حتى يبرمج نفسه في عقلك. مثل تدريب إطلاق النار في الألعاب: تكرر، تكرر، تكرر،
-      ثم تجد يدك تفعل الصواب دون تفكير.
-    </p>
-  </section>
-
-  <!-- الطريقة في 3 خطوات -->
-  <section>
-    <h2>الطريقة في 3 خطوات</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="num">01</div>
-        <h3>شاهد النمط</h3>
-        <p>دوائر، أسهم، رموز بصرية. عينك ترى العلاقة قبل عقلك الواعي.</p>
-      </div>
-      <div class="step">
-        <div class="num">02</div>
-        <h3>كرر الجولات</h3>
-        <p>نفس النمط يتكرر بصيغ مختلفة. 10 إلى 20 جولة. لا تفكر، فقط شاهد.</p>
-      </div>
-      <div class="step">
-        <div class="num">03</div>
-        <h3>اكتشف القاعدة</h3>
-        <p>في النهاية، جملة واحدة. لكنها لن تكون شرحاً، ستكون تأكيداً لما رآه عقلك.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- معرض الرموز -->
-  <section>
-    <h2>الرموز الأساسية</h2>
-    <div class="symbols-grid">
-      <div class="symbol-card">
-        <span class="glyph">○</span>
-        <div class="meaning">قيمة فارغة / بداية</div>
-      </div>
-      <div class="symbol-card">
-        <span class="glyph">●</span>
-        <div class="meaning">قيمة زادت</div>
-      </div>
-      <div class="symbol-card">
-        <span class="glyph">◐</span>
-        <div class="meaning">تغير بطيء</div>
-      </div>
-      <div class="symbol-card">
-        <span class="glyph">→</span>
-        <div class="meaning">خطوة زمنية</div>
-      </div>
-      <div class="symbol-card">
-        <span class="glyph">⇉</span>
-        <div class="meaning">تغير كبير</div>
-      </div>
-      <div class="symbol-card">
-        <span class="glyph">↑</span>
-        <div class="meaning">اتجاه موجب</div>
-      </div>
-      <div class="symbol-card">
-        <span class="glyph">↓</span>
-        <div class="meaning">اتجاه سالب</div>
-      </div>
-      <div class="symbol-card">
-        <span class="glyph">◆</span>
-        <div class="meaning">ثابت لا يتغير</div>
-      </div>
-    </div>
-    <p style="margin-top: 20px; color: #8b949e; font-size: 0.9em; text-align: center;">
-      * هذه الرموز ليست ثابتة. يمكن اختراع رموز جديدة حسب الحاجة.
-    </p>
-  </section>
-
-  <!-- القوالب الثلاثة -->
-  <section>
-    <h2>القوالب الثلاثة للتدريب</h2>
-    <div class="templates">
-      <div class="template">
-        <h3>📐 القالب 1: تدريب النمط</h3>
-        <div class="desc">صفوف متكررة، يتغير عنصر واحد كل جولة. الهدف: اكتشاف العلاقة.</div>
-<pre>الجولة 1:  ○ ○ ○ ○  →  ● ○ ○ ○
-الجولة 2:  ○ ○ ○ ○  →  ● ● ○ ○
-الجولة 3:  ○ ○ ○ ○  →  ● ● ● ○
-الجولة 4:  ○ ○ ○ ○  →  ● ● ● ●</pre>
-      </div>
-      <div class="template">
-        <h3>📊 القالب 2: تدريب المقارنة</h3>
-        <div class="desc">عمودان متجاوران. نفس المدخلات، نتائج مختلفة. الهدف: التفريق البصري.</div>
-<pre>سريع (a=3)          بطيء (a=0.5)
-x: ● ● ● ●          x: ● ● ● ●
-y: ● ● ● ● ● ●      y: ◐ ◐ ◐ ◐</pre>
-      </div>
-      <div class="template">
-        <h3>🔗 القالب 3: التسلسل السببي</h3>
-        <div class="desc">سلسلة أسهم، كل خطوة تعتمد على السابقة. الهدف: رؤية "ماذا بعد ماذا".</div>
-<pre>البداية → x=1 → x=2 → x=3
-  ●●●●●    ●●●●●●  ●●●●●●●  ●●●●●●●●
-   ↓        ↓       ↓        ↓
-(إزاحة)  (نمو)  (نمو)  (نمو)</pre>
-      </div>
-    </div>
-  </section>
-
-  <!-- القاعدة الذهبية -->
-  <div class="golden-rule">
-    <p>"لكل نمط، رمزه.<br>ولكل رمز، طاقته."</p>
+  <!-- شريط علوي -->
+  <div class="topbar">
+    <div class="logo">🧠 مختبر بناء العقل</div>
+    <a href="index.html" class="back">→ العودة للرئيسية</a>
   </div>
 
-  <!-- زر البدء -->
-  <a href="#" class="start-btn">ابدأ التدريب ←</a>
+  <!-- العنوان -->
+  <h1>اختر مادتك</h1>
+  <p class="subtitle">ثلاث مواد. تدريبات بصرية. تكرار حتى البرمجة.</p>
+
+  <!-- شبكة المواد -->
+  <div class="materials-grid">
+
+    <!-- الرياضيات (نشطة) -->
+    <div class="material-card active">
+      <span class="icon">📐</span>
+      <h2>الرياضيات</h2>
+      <div class="status">● متاحة الآن</div>
+      <a href="#math-lessons" class="enter-btn">ادخل ←</a>
+    </div>
+
+    <!-- الفيزياء (قيد الإنشاء) -->
+    <div class="material-card locked">
+      <span class="icon">⚛️</span>
+      <h2>الفيزياء</h2>
+      <div class="status">🔒 قيد الإنشاء</div>
+      <a href="#" class="enter-btn">قريباً</a>
+    </div>
+
+    <!-- الكيمياء (قيد الإنشاء) -->
+    <div class="material-card locked">
+      <span class="icon">🧪</span>
+      <h2>الكيمياء</h2>
+      <div class="status">🔒 قيد الإنشاء</div>
+      <a href="#" class="enter-btn">قريباً</a>
+    </div>
+
+  </div>
+
+  <!-- قسم دروس الرياضيات -->
+  <div class="lessons-section" id="math-lessons">
+    <h3>📐 دروس الرياضيات</h3>
+    <div class="lessons-list">
+
+      <a href="#" class="lesson-item available">
+        <div class="lesson-info">
+          <span class="lesson-num">01</span>
+          <span class="lesson-title">المعادلات الخطية: y = ax + b</span>
+        </div>
+        <span class="lesson-status">متاح</span>
+      </a>
+
+      <a href="#" class="lesson-item">
+        <div class="lesson-info">
+          <span class="lesson-num">02</span>
+          <span class="lesson-title">تأثير المعامل a: الميل</span>
+        </div>
+        <span class="lesson-status">قريباً</span>
+      </a>
+
+      <a href="#" class="lesson-item">
+        <div class="lesson-info">
+          <span class="lesson-num">03</span>
+          <span class="lesson-title">تأثير المعامل b: الإزاحة</span>
+        </div>
+        <span class="lesson-status">قريباً</span>
+      </a>
+
+      <a href="#" class="lesson-item">
+        <div class="lesson-info">
+          <span class="lesson-num">04</span>
+          <span class="lesson-title">القيمة المطلقة والميل السالب</span>
+        </div>
+        <span class="lesson-status">قريباً</span>
+      </a>
+
+    </div>
+  </div>
 
   <!-- التذييل -->
   <footer>
     <p>© 2026 مختبر بناء العقل | Mind Forge</p>
-    <p style="margin-top: 10px;">بُني ليبرمج العقل، لا ليعلمه.</p>
   </footer>
 
 </div>
