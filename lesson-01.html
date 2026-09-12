@@ -16,7 +16,6 @@
   }
   .container { max-width: 900px; margin: 0 auto; }
 
-  /* ===== شريط علوي ===== */
   .topbar {
     display: flex;
     justify-content: space-between;
@@ -34,7 +33,6 @@
   }
   .topbar .back:hover { color: #58a6ff; }
 
-  /* ===== ترويسة الدرس ===== */
   .lesson-header {
     text-align: center;
     padding: 30px 20px;
@@ -55,12 +53,8 @@
     color: #58a6ff;
     margin-bottom: 10px;
   }
-  .lesson-header .meta {
-    color: #8b949e;
-    font-size: 0.9em;
-  }
+  .lesson-header .meta { color: #8b949e; font-size: 0.9em; }
 
-  /* ===== بطاقة القاعدة ===== */
   .rule-box {
     background: linear-gradient(135deg, #1c2128, #161b22);
     border: 1px solid #58a6ff;
@@ -69,11 +63,7 @@
     text-align: center;
     margin-bottom: 40px;
   }
-  .rule-box h2 {
-    color: #58a6ff;
-    font-size: 1.1em;
-    margin-bottom: 15px;
-  }
+  .rule-box h2 { color: #58a6ff; font-size: 1.1em; margin-bottom: 15px; }
   .rule-box .formula {
     font-size: 1.6em;
     color: #e6edf3;
@@ -82,7 +72,15 @@
     letter-spacing: 2px;
   }
 
-  /* ===== شبكة الأرباع ===== */
+  .section-title {
+    font-size: 1.4em;
+    color: #58a6ff;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   .quadrants-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -101,16 +99,8 @@
     transition: all 0.3s;
   }
   .quadrant:hover { transform: scale(1.05); }
-  .quadrant .q-symbol {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    display: block;
-  }
-  .quadrant .q-title {
-    color: #58a6ff;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
+  .quadrant .q-symbol { font-size: 2.5em; margin-bottom: 10px; display: block; }
+  .quadrant .q-title { color: #58a6ff; font-weight: bold; margin-bottom: 5px; }
   .quadrant .q-signs {
     font-family: 'Courier New', monospace;
     font-size: 1.1em;
@@ -124,16 +114,6 @@
   .quadrant.q2 .q-signs { color: #d29922; }
   .quadrant.q3 .q-signs { color: #f85149; }
   .quadrant.q4 .q-signs { color: #58a6ff; }
-
-  /* ===== قسم الجولات ===== */
-  .section-title {
-    font-size: 1.4em;
-    color: #58a6ff;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
 
   .rounds-container {
     display: flex;
@@ -152,10 +132,7 @@
     gap: 20px;
     transition: all 0.3s;
   }
-  .round:hover {
-    border-color: #58a6ff;
-    background: #1c2128;
-  }
+  .round:hover { border-color: #58a6ff; background: #1c2128; }
   .round .round-num {
     background: #1f6feb;
     color: #fff;
@@ -180,7 +157,6 @@
   .round .plus { color: #3fb950; font-weight: bold; }
   .round .minus { color: #f85149; font-weight: bold; }
 
-  /* ===== القاعدة المكتشفة ===== */
   .discovered-rule {
     text-align: center;
     padding: 50px 20px;
@@ -189,11 +165,7 @@
     border-radius: 15px;
     margin: 40px 0;
   }
-  .discovered-rule .label {
-    color: #8b949e;
-    font-size: 0.9em;
-    margin-bottom: 15px;
-  }
+  .discovered-rule .label { color: #8b949e; font-size: 0.9em; margin-bottom: 15px; }
   .discovered-rule p {
     font-size: 1.4em;
     color: #58a6ff;
@@ -201,7 +173,6 @@
     line-height: 1.8;
   }
 
-  /* ===== أزرار التحكم ===== */
   .controls {
     display: flex;
     gap: 15px;
@@ -220,22 +191,14 @@
     transition: all 0.3s;
     font-family: inherit;
   }
-  .btn-primary {
-    background: #58a6ff;
-    color: #0d1117;
-  }
-  .btn-primary:hover {
-    background: #79c0ff;
-    transform: scale(1.05);
-  }
+  .btn-primary { background: #58a6ff; color: #0d1117; }
+  .btn-primary:hover { background: #79c0ff; transform: scale(1.05); }
   .btn-secondary {
     background: transparent;
     color: #58a6ff;
     border: 1px solid #58a6ff;
   }
-  .btn-secondary:hover {
-    background: #1c2128;
-  }
+  .btn-secondary:hover { background: #1c2128; }
 
   footer {
     text-align: center;
@@ -245,28 +208,22 @@
     margin-top: 60px;
     border-top: 1px solid #21262d;
   }
-
-  /* ===== إخفاء الجولات حتى الضغط على زر ===== */
-  .round.hidden { display: none; }
 </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- شريط علوي -->
   <div class="topbar">
     <div class="logo">🧠 مختبر بناء العقل</div>
     <a href="materials.html" class="back">→ العودة للمواد</a>
   </div>
 
-  <!-- ترويسة الدرس -->
   <div class="lesson-header">
     <span class="badge">ثالث ثانوي • رياضيات</span>
     <h1>الدرس 01: استعمال المتطابقات المثلية</h1>
     <div class="meta">كيف نجد قيمة دالة مثلثية بمعلومية أخرى؟</div>
   </div>
 
-  <!-- بطاقة القاعدة -->
   <div class="rule-box">
     <h2>🔑 المفتاح الأساسي</h2>
     <div class="formula">S² + C² = 1</div>
@@ -275,7 +232,6 @@
     </p>
   </div>
 
-  <!-- شبكة الأرباع -->
   <h2 class="section-title">🧭 الإشارات حسب الربع</h2>
   <div class="quadrants-grid">
     <div class="quadrant q2">
@@ -300,9 +256,8 @@
     </div>
   </div>
 
-  <!-- الجولات -->
   <h2 class="section-title">🎯 الجولات التدريبية</h2>
-  <div class="rounds-container" id="rounds">
+  <div class="rounds-container">
 
     <div class="round">
       <div class="round-num">1</div>
@@ -361,24 +316,16 @@
 
   </div>
 
-  <!-- القاعدة المكتشفة -->
   <div class="discovered-rule">
     <div class="label">✨ القاعدة التي اكتشفها عقلك</div>
     <p>"sin يعطيك cos.<br>الربع يحدد الإشارة.<br>لا تحفظ، فقط انظر إلى ◱ ◰ ◲ ◳."</p>
   </div>
 
-  <!-- أزرار التحكم -->
   <div class="controls">
     <button class="btn btn-primary" onclick="location.reload()">🔄 أعد التدريب</button>
     <a href="materials.html" class="btn btn-secondary">← العودة للمواد</a>
   </div>
 
-  <!-- التذييل -->
   <footer>
     <p>© 2026 مختبر بناء العقل | Mind Forge</p>
-    <p style="margin-top: 10px;">بُني ليبرمج العقل، لا ليعلمه.</p>
-  </footer>
-
-</div>
-</body>
-</html>
+    <p style="margin-top: 10px;">بُني ليبرمج العقل، لا ليعلم
