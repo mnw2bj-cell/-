@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المواد | مختبر بناء العقل</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    line-height: 1.8;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  /* ===== شريط علوي ===== */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #30363d;
+    margin-bottom: 40px;
+  }
+  .topbar .logo {
+    font-size: 1.2em;
+    color: #58a6ff;
+    font-weight: bold;
+  }
+  .topbar .back {
+    color: #8b949e;
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: color 0.3s;
+  }
+  .topbar .back:hover { color: #58a6ff; }
+
+  /* ===== العنوان ===== */
+  h1 {
+    text-align: center;
+    color: #58a6ff;
+    font-size: 2.2em;
+    margin-bottom: 15px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #8b949e;
+    margin-bottom: 50px;
+  }
+
+  /* ===== شبكة المواد ===== */
+  .materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 60px;
+  }
+  .material-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 35px 25px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .material-card.active {
+    border-color: #58a6ff;
+    cursor: pointer;
+  }
+  .material-card.active:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(88, 166, 255, 0.2);
+  }
+  .material-card.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .material-card .icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .material-card h2 {
+    color: #e6edf3;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+  }
+  .material-card .status {
+    font-size: 0.9em;
+    color: #8b949e;
+    margin-bottom: 20px;
+  }
+  .material-card.active .status { color: #58a6ff; }
+  .material-card .enter-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #58a6ff;
+    color: #0d1117;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+  .material-card.active .enter-btn:hover {
+    background: #79c0ff;
+  }
+  .material-card.locked .enter-btn {
+    background: #30363d;
+    color: #484f58;
+    cursor: not-allowed;
+  }
+
+  /* ===== قسم دروس الرياضيات ===== */
+  .lessons-section {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 35px;
+    margin-top: 40px;
+  }
+  .lessons-section h3 {
+    color: #58a6ff;
+    font-size: 1.4em;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .lessons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .lesson-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    background: #0d1117;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: #c9d1d9;
+  }
+  .lesson-item:hover {
+    border-color: #58a6ff;
+    background: #1c2128;
+  }
+  .lesson-item .lesson-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .lesson-item .lesson-num {
+    color: #58a6ff;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+  .lesson-item .lesson-title {
+    font-size: 1.05em;
+  }
+  .lesson-item .lesson-status {
+    font-size: 0.85em;
+    color: #484f58;
+    padding: 4px 12px;
+    border: 1px solid #30363d;
+    border-radius: 20px;
+  }
+  .lesson-item.available .lesson-status {
+    color: #3fb950;
+    border-color: #3fb950;
+  }
+
+  /* ===== التذييل ===== */
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: #484f58;
+    font-size: 0.9em;
+    margin-top: 60px;
+    border-top: 1px solid #21262d;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- شريط علوي -->
+  <div class="topbar">
+    <div class="logo">🧠 مختبر بناء العقل</div>
+    <a href="index.html" class="back">→ العودة للرئيسية</a>
+  </div>
+
+  <!-- العنوان -->
+  <h1>اختر مادتك</h1>
+  <p class="subtitle">ثلاث مواد. تدريبات بصرية. تكرار حتى البرمجة.</p>
+
+  <!-- شبكة المواد -->
+  <div class="materials-grid">
+
+    <!-- الرياضيات (نشطة) -->
+    <div class="material-card active">
+      <span class="icon">📐</span>
+      <h2>الرياضيات</h2>
+      <div class="status">● متاحة الآن</div>
+      <a href="#math-lessons" class="enter-btn">ادخل ←</a>
+    </div>
+
+    <!-- الفيزياء (قيد الإنشاء) -->
+    <div class="material-card locked">
+      <span class="icon">⚛️</span>
+      <h2>الفيزياء</h2>
+      <div class="status">🔒 قيد الإنشاء</div>
+      <a href="#" class="enter-btn">قريباً</a>
+    </div>
+
+    <!-- الكيمياء (قيد الإنشاء) -->
+    <div class="material-card locked">
+      <span class="icon">🧪</span>
+      <h2>الكيمياء</h2>
+      <div class="status">🔒 قيد الإنشاء</div>
+      <a href="#" class="enter-btn">قريباً</a>
+    </div>
+
+  </div>
+
+  <!-- قسم دروس الرياضيات -->
+  <div class="lessons-section" id="math-lessons">
+    <h3>📐 دروس الرياضيات</h3>
+    <div class="lessons-list">
+
+      <a href="#" class="lesson-item available">
+        <div class="lesson-info">
+          <span class="lesson-num">01</span>
+          <span class="lesson-title">المعادلات الخطية: y = ax + b</span>
+        </div>
+        <span class="lesson-status">متاح</span>
+      </a>
+
+      <a href="#" class="lesson-item">
+        <div class="lesson-info">
+          <span class="lesson-num">02</span>
+          <span class="lesson-title">تأثير المعامل a: الميل</span>
+        </div>
+        <span class="lesson-status">قريباً</span>
+      </a>
+
+      <a href="#" class="lesson-item">
+        <div class="lesson-info">
+          <span class="lesson-num">03</span>
+          <span class="lesson-title">تأثير المعامل b: الإزاحة</span>
+        </div>
+        <span class="lesson-status">قريباً</span>
+      </a>
+
+      <a href="#" class="lesson-item">
+        <div class="lesson-info">
+          <span class="lesson-num">04</span>
+          <span class="lesson-title">القيمة المطلقة والميل السالب</span>
+        </div>
+        <span class="lesson-status">قريباً</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- التذييل -->
+  <footer>
+    <p>© 2026 مختبر بناء العقل | Mind Forge</p>
+  </footer>
+
+</div>
+</body>
+</html>
