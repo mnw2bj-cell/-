@@ -5,12 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>مختبر بناء العقل | Mind Forge</title>
 <style>
-  /* ===== الأساسيات ===== */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
     background: #0d1117;
@@ -18,12 +13,8 @@
     line-height: 1.8;
     padding: 20px;
   }
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-  }
+  .container { max-width: 900px; margin: 0 auto; }
 
-  /* ===== الترويسة ===== */
   header {
     text-align: center;
     padding: 60px 20px 40px;
@@ -35,10 +26,7 @@
     margin-bottom: 10px;
     letter-spacing: 2px;
   }
-  header .subtitle {
-    font-size: 1.2em;
-    color: #8b949e;
-  }
+  header .subtitle { font-size: 1.2em; color: #8b949e; }
   header .tagline {
     margin-top: 20px;
     font-size: 1.1em;
@@ -46,7 +34,6 @@
     font-style: italic;
   }
 
-  /* ===== الأقسام ===== */
   section {
     padding: 50px 20px;
     border-bottom: 1px solid #21262d;
@@ -67,7 +54,6 @@
     border-radius: 3px;
   }
 
-  /* ===== الخطوات الثلاث ===== */
   .steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -80,27 +66,16 @@
     padding: 25px;
     transition: transform 0.3s;
   }
-  .step:hover {
-    transform: translateY(-5px);
-    border-color: #58a6ff;
-  }
+  .step:hover { transform: translateY(-5px); border-color: #58a6ff; }
   .step .num {
     font-size: 2.5em;
     color: #58a6ff;
     font-weight: bold;
     margin-bottom: 15px;
   }
-  .step h3 {
-    color: #e6edf3;
-    margin-bottom: 10px;
-    font-size: 1.2em;
-  }
-  .step p {
-    color: #8b949e;
-    font-size: 0.95em;
-  }
+  .step h3 { color: #e6edf3; margin-bottom: 10px; font-size: 1.2em; }
+  .step p { color: #8b949e; font-size: 0.95em; }
 
-  /* ===== معرض الرموز ===== */
   .symbols-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -114,43 +89,24 @@
     text-align: center;
     transition: all 0.3s;
   }
-  .symbol-card:hover {
-    border-color: #58a6ff;
-    background: #1c2128;
-  }
+  .symbol-card:hover { border-color: #58a6ff; background: #1c2128; }
   .symbol-card .glyph {
     font-size: 2.5em;
     margin-bottom: 15px;
     color: #58a6ff;
     display: block;
   }
-  .symbol-card .meaning {
-    font-size: 0.9em;
-    color: #8b949e;
-  }
+  .symbol-card .meaning { font-size: 0.9em; color: #8b949e; }
 
-  /* ===== القوالب ===== */
-  .templates {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
+  .templates { display: flex; flex-direction: column; gap: 30px; }
   .template {
     background: #161b22;
     border: 1px solid #30363d;
     border-radius: 10px;
     padding: 25px;
   }
-  .template h3 {
-    color: #58a6ff;
-    margin-bottom: 15px;
-    font-size: 1.3em;
-  }
-  .template .desc {
-    color: #8b949e;
-    margin-bottom: 20px;
-    font-size: 0.95em;
-  }
+  .template h3 { color: #58a6ff; margin-bottom: 15px; font-size: 1.3em; }
+  .template .desc { color: #8b949e; margin-bottom: 20px; font-size: 0.95em; }
   .template pre {
     background: #0d1117;
     border: 1px solid #21262d;
@@ -165,7 +121,6 @@
     line-height: 1.6;
   }
 
-  /* ===== القاعدة الذهبية ===== */
   .golden-rule {
     text-align: center;
     padding: 60px 20px;
@@ -181,7 +136,6 @@
     line-height: 1.8;
   }
 
-  /* ===== زر البدء ===== */
   .start-btn {
     display: block;
     width: fit-content;
@@ -195,12 +149,8 @@
     font-weight: bold;
     transition: all 0.3s;
   }
-  .start-btn:hover {
-    background: #79c0ff;
-    transform: scale(1.05);
-  }
+  .start-btn:hover { background: #79c0ff; transform: scale(1.05); }
 
-  /* ===== التذييل ===== */
   footer {
     text-align: center;
     padding: 40px 20px;
@@ -212,14 +162,12 @@
 <body>
 <div class="container">
 
-  <!-- الترويسة -->
   <header>
     <h1>🧠 مختبر بناء العقل</h1>
     <div class="subtitle">Mind Forge</div>
     <div class="tagline">"لا نشرح. نكرر. حتى يتعلم العقل بنفسه."</div>
   </header>
 
-  <!-- المقدمة -->
   <section>
     <h2>ما هذا الموقع؟</h2>
     <p style="font-size: 1.1em; color: #c9d1d9;">
@@ -230,7 +178,6 @@
     </p>
   </section>
 
-  <!-- الطريقة في 3 خطوات -->
   <section>
     <h2>الطريقة في 3 خطوات</h2>
     <div class="steps">
@@ -252,49 +199,23 @@
     </div>
   </section>
 
-  <!-- معرض الرموز -->
   <section>
     <h2>الرموز الأساسية</h2>
     <div class="symbols-grid">
-      <div class="symbol-card">
-        <span class="glyph">○</span>
-        <div class="meaning">قيمة فارغة / بداية</div>
-      </div>
-      <div class="symbol-card">
-        <span class="glyph">●</span>
-        <div class="meaning">قيمة زادت</div>
-      </div>
-      <div class="symbol-card">
-        <span class="glyph">◐</span>
-        <div class="meaning">تغير بطيء</div>
-      </div>
-      <div class="symbol-card">
-        <span class="glyph">→</span>
-        <div class="meaning">خطوة زمنية</div>
-      </div>
-      <div class="symbol-card">
-        <span class="glyph">⇉</span>
-        <div class="meaning">تغير كبير</div>
-      </div>
-      <div class="symbol-card">
-        <span class="glyph">↑</span>
-        <div class="meaning">اتجاه موجب</div>
-      </div>
-      <div class="symbol-card">
-        <span class="glyph">↓</span>
-        <div class="meaning">اتجاه سالب</div>
-      </div>
-      <div class="symbol-card">
-        <span class="glyph">◆</span>
-        <div class="meaning">ثابت لا يتغير</div>
-      </div>
+      <div class="symbol-card"><span class="glyph">○</span><div class="meaning">قيمة فارغة / بداية</div></div>
+      <div class="symbol-card"><span class="glyph">●</span><div class="meaning">قيمة زادت</div></div>
+      <div class="symbol-card"><span class="glyph">◐</span><div class="meaning">تغير بطيء</div></div>
+      <div class="symbol-card"><span class="glyph">→</span><div class="meaning">خطوة زمنية</div></div>
+      <div class="symbol-card"><span class="glyph">⇉</span><div class="meaning">تغير كبير</div></div>
+      <div class="symbol-card"><span class="glyph">↑</span><div class="meaning">اتجاه موجب</div></div>
+      <div class="symbol-card"><span class="glyph">↓</span><div class="meaning">اتجاه سالب</div></div>
+      <div class="symbol-card"><span class="glyph">◆</span><div class="meaning">ثابت لا يتغير</div></div>
     </div>
     <p style="margin-top: 20px; color: #8b949e; font-size: 0.9em; text-align: center;">
       * هذه الرموز ليست ثابتة. يمكن اختراع رموز جديدة حسب الحاجة.
     </p>
   </section>
 
-  <!-- القوالب الثلاثة -->
   <section>
     <h2>القوالب الثلاثة للتدريب</h2>
     <div class="templates">
@@ -324,15 +245,12 @@ y: ● ● ● ● ● ●      y: ◐ ◐ ◐ ◐</pre>
     </div>
   </section>
 
-  <!-- القاعدة الذهبية -->
   <div class="golden-rule">
     <p>"لكل نمط، رمزه.<br>ولكل رمز، طاقته."</p>
   </div>
 
-  <!-- زر البدء -->
   <a href="materials.html" class="start-btn">ابدأ التدريب ←</a>
 
-  <!-- التذييل -->
   <footer>
     <p>© 2026 مختبر بناء العقل | Mind Forge</p>
     <p style="margin-top: 10px;">بُني ليبرمج العقل، لا ليعلمه.</p>
