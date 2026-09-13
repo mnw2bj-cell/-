@@ -1,261 +1,115 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مختبر بناء العقل | Mind Forge</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: #0d1117;
-    color: #e6edf3;
-    line-height: 1.8;
-    padding: 20px;
-  }
-  .container { max-width: 900px; margin: 0 auto; }
-
-  header {
-    text-align: center;
-    padding: 60px 20px 40px;
-    border-bottom: 1px solid #30363d;
-  }
-  header h1 {
-    font-size: 2.5em;
-    color: #58a6ff;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
-  }
-  header .subtitle { font-size: 1.2em; color: #8b949e; }
-  header .tagline {
-    margin-top: 20px;
-    font-size: 1.1em;
-    color: #c9d1d9;
-    font-style: italic;
-  }
-
-  section {
-    padding: 50px 20px;
-    border-bottom: 1px solid #21262d;
-  }
-  section h2 {
-    font-size: 1.8em;
-    color: #58a6ff;
-    margin-bottom: 30px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  section h2::before {
-    content: '';
-    width: 6px;
-    height: 30px;
-    background: #58a6ff;
-    border-radius: 3px;
-  }
-
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-  }
-  .step {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 25px;
-    transition: transform 0.3s;
-  }
-  .step:hover { transform: translateY(-5px); border-color: #58a6ff; }
-  .step .num {
-    font-size: 2.5em;
-    color: #58a6ff;
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-  .step h3 { color: #e6edf3; margin-bottom: 10px; font-size: 1.2em; }
-  .step p { color: #8b949e; font-size: 0.95em; }
-
-  .symbols-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 20px;
-  }
-  .symbol-card {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 25px 15px;
-    text-align: center;
-    transition: all 0.3s;
-  }
-  .symbol-card:hover { border-color: #58a6ff; background: #1c2128; }
-  .symbol-card .glyph {
-    font-size: 2.5em;
-    margin-bottom: 15px;
-    color: #58a6ff;
-    display: block;
-  }
-  .symbol-card .meaning { font-size: 0.9em; color: #8b949e; }
-
-  .templates { display: flex; flex-direction: column; gap: 30px; }
-  .template {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 25px;
-  }
-  .template h3 { color: #58a6ff; margin-bottom: 15px; font-size: 1.3em; }
-  .template .desc { color: #8b949e; margin-bottom: 20px; font-size: 0.95em; }
-  .template pre {
-    background: #0d1117;
-    border: 1px solid #21262d;
-    border-radius: 8px;
-    padding: 20px;
-    font-family: 'Courier New', monospace;
-    font-size: 1.1em;
-    color: #c9d1d9;
-    direction: ltr;
-    text-align: left;
-    overflow-x: auto;
-    line-height: 1.6;
-  }
-
-  .golden-rule {
-    text-align: center;
-    padding: 60px 20px;
-    background: linear-gradient(135deg, #161b22 0%, #1c2128 100%);
-    border-radius: 15px;
-    border: 1px solid #58a6ff;
-    margin: 40px 0;
-  }
-  .golden-rule p {
-    font-size: 1.5em;
-    color: #58a6ff;
-    font-weight: bold;
-    line-height: 1.8;
-  }
-
-  .start-btn {
-    display: block;
-    width: fit-content;
-    margin: 40px auto;
-    padding: 18px 50px;
-    background: #58a6ff;
-    color: #0d1117;
-    text-decoration: none;
-    border-radius: 10px;
-    font-size: 1.2em;
-    font-weight: bold;
-    transition: all 0.3s;
-  }
-  .start-btn:hover { background: #79c0ff; transform: scale(1.05); }
-
-  footer {
-    text-align: center;
-    padding: 40px 20px;
-    color: #484f58;
-    font-size: 0.9em;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FriendZone - تواصل، العب، استمتع</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="logo">🎈 FriendZone</div>
+        <ul class="nav-links">
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#rooms">الغرف</a></li>
+            <li><a href="#friends">الأصدقاء</a></li>
+            <li><a href="#about">حول</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <button class="btn-login">دخول</button>
+            <button class="btn-signup">تسجيل</button>
+        </div>
+    </nav>
 
-  <header>
-    <h1>🧠 مختبر بناء العقل</h1>
-    <div class="subtitle">Mind Forge</div>
-    <div class="tagline">"لا نشرح. نكرر. حتى يتعلم العقل بنفسه."</div>
-  </header>
+    <!-- قسم البطل -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>مرحباً بك في <span>FriendZone</span></h1>
+            <p>تواصل مع أصدقائك، انضم للغرف الافتراضية، وابنِ صداقات جديدة!</p>
+            <div class="hero-buttons">
+                <button class="btn-primary">ابدأ الآن مجاناً</button>
+                <button class="btn-secondary">استكشف الغرف</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="floating-avatar" style="--d:0s">😎</div>
+            <div class="floating-avatar" style="--d:1s">🦄</div>
+            <div class="floating-avatar" style="--d:2s">🐱</div>
+            <div class="floating-avatar" style="--d:3s">🎨</div>
+        </div>
+    </section>
 
-  <section>
-    <h2>ما هذا الموقع؟</h2>
-    <p style="font-size: 1.1em; color: #c9d1d9;">
-      هذا ليس موقعاً تعليمياً تقليدياً. لا يوجد شروحات طويلة، ولا فقرات أكاديمية.
-      هنا، كل درس يتحول إلى <strong style="color:#58a6ff;">تدريب بصري</strong> يتكرر
-      حتى يبرمج نفسه في عقلك. مثل تدريب إطلاق النار في الألعاب: تكرر، تكرر، تكرر،
-      ثم تجد يدك تفعل الصواب دون تفكير.
-    </p>
-  </section>
+    <!-- المميزات -->
+    <section class="features">
+        <h2>لماذا FriendZone؟</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>دردشة فورية</h3>
+                <p>تحدث مع أصدقائك في غرف دردشة عامة أو خاصة</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏠</div>
+                <h3>غرف افتراضية</h3>
+                <p>انضم لغرف موضوعية وشارك اهتماماتك</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>أصدقاء جدد</h3>
+                <p>تعرف على أشخاص جدد من حول العالم</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎭</div>
+                <h3>أفاتارات مخصصة</h3>
+                <p>صمم شخصيتك الافتراضية الخاصة</p>
+            </div>
+        </div>
+    </section>
 
-  <section>
-    <h2>الطريقة في 3 خطوات</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="num">01</div>
-        <h3>شاهد النمط</h3>
-        <p>دوائر، أسهم، رموز بصرية. عينك ترى العلاقة قبل عقلك الواعي.</p>
-      </div>
-      <div class="step">
-        <div class="num">02</div>
-        <h3>كرر الجولات</h3>
-        <p>نفس النمط يتكرر بصيغ مختلفة. 10 إلى 20 جولة. لا تفكر، فقط شاهد.</p>
-      </div>
-      <div class="step">
-        <div class="num">03</div>
-        <h3>اكتشف القاعدة</h3>
-        <p>في النهاية، جملة واحدة. لكنها لن تكون شرحاً، ستكون تأكيداً لما رآه عقلك.</p>
-      </div>
-    </div>
-  </section>
+    <!-- الغرف النشطة -->
+    <section class="rooms" id="rooms">
+        <h2>الغرف النشطة الآن 🔥</h2>
+        <div class="rooms-grid">
+            <div class="room-card">
+                <div class="room-header" style="background: linear-gradient(135deg,#667eea,#764ba2)">
+                    <span>🎵</span>
+                </div>
+                <div class="room-info">
+                    <h4>عشاق الموسيقى</h4>
+                    <p>👥 42 مستخدم</p>
+                    <button class="btn-join">انضم</button>
+                </div>
+            </div>
+            <div class="room-card">
+                <div class="room-header" style="background: linear-gradient(135deg,#f093fb,#f5576c)">
+                    <span>🎨</span>
+                </div>
+                <div class="room-info">
+                    <h4>الفنانون</h4>
+                    <p>👥 28 مستخدم</p>
+                    <button class="btn-join">انضم</button>
+                </div>
+            </div>
+            <div class="room-card">
+                <div class="room-header" style="background: linear-gradient(135deg,#4facfe,#00f2fe)">
+                    <span>⚽</span>
+                </div>
+                <div class="room-info">
+                    <h4>عشاق الرياضة</h4>
+                    <p>👥 56 مستخدم</p>
+                    <button class="btn-join">انضم</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section>
-    <h2>الرموز الأساسية</h2>
-    <div class="symbols-grid">
-      <div class="symbol-card"><span class="glyph">○</span><div class="meaning">قيمة فارغة / بداية</div></div>
-      <div class="symbol-card"><span class="glyph">●</span><div class="meaning">قيمة زادت</div></div>
-      <div class="symbol-card"><span class="glyph">◐</span><div class="meaning">تغير بطيء</div></div>
-      <div class="symbol-card"><span class="glyph">→</span><div class="meaning">خطوة زمنية</div></div>
-      <div class="symbol-card"><span class="glyph">⇉</span><div class="meaning">تغير كبير</div></div>
-      <div class="symbol-card"><span class="glyph">↑</span><div class="meaning">اتجاه موجب</div></div>
-      <div class="symbol-card"><span class="glyph">↓</span><div class="meaning">اتجاه سالب</div></div>
-      <div class="symbol-card"><span class="glyph">◆</span><div class="meaning">ثابت لا يتغير</div></div>
-    </div>
-    <p style="margin-top: 20px; color: #8b949e; font-size: 0.9em; text-align: center;">
-      * هذه الرموز ليست ثابتة. يمكن اختراع رموز جديدة حسب الحاجة.
-    </p>
-  </section>
+    <!-- الفوتر -->
+    <footer>
+        <p>© 2025 FriendZone - جميع الحقوق محفوظة</p>
+    </footer>
 
-  <section>
-    <h2>القوالب الثلاثة للتدريب</h2>
-    <div class="templates">
-      <div class="template">
-        <h3>📐 القالب 1: تدريب النمط</h3>
-        <div class="desc">صفوف متكررة، يتغير عنصر واحد كل جولة. الهدف: اكتشاف العلاقة.</div>
-<pre>الجولة 1:  ○ ○ ○ ○  →  ● ○ ○ ○
-الجولة 2:  ○ ○ ○ ○  →  ● ● ○ ○
-الجولة 3:  ○ ○ ○ ○  →  ● ● ● ○
-الجولة 4:  ○ ○ ○ ○  →  ● ● ● ●</pre>
-      </div>
-      <div class="template">
-        <h3>📊 القالب 2: تدريب المقارنة</h3>
-        <div class="desc">عمودان متجاوران. نفس المدخلات، نتائج مختلفة. الهدف: التفريق البصري.</div>
-<pre>سريع (a=3)          بطيء (a=0.5)
-x: ● ● ● ●          x: ● ● ● ●
-y: ● ● ● ● ● ●      y: ◐ ◐ ◐ ◐</pre>
-      </div>
-      <div class="template">
-        <h3>🔗 القالب 3: التسلسل السببي</h3>
-        <div class="desc">سلسلة أسهم، كل خطوة تعتمد على السابقة. الهدف: رؤية "ماذا بعد ماذا".</div>
-<pre>البداية → x=1 → x=2 → x=3
-  ●●●●●    ●●●●●●  ●●●●●●●  ●●●●●●●●
-   ↓        ↓       ↓        ↓
-(إزاحة)  (نمو)  (نمو)  (نمو)</pre>
-      </div>
-    </div>
-  </section>
-
-  <div class="golden-rule">
-    <p>"لكل نمط، رمزه.<br>ولكل رمز، طاقته."</p>
-  </div>
-
-  <a href="materials.html" class="start-btn">ابدأ التدريب ←</a>
-
-  <footer>
-    <p>© 2026 مختبر بناء العقل | Mind Forge</p>
-    <p style="margin-top: 10px;">بُني ليبرمج العقل، لا ليعلمه.</p>
-  </footer>
-
-</div>
+    <script src="script.js"></script>
 </body>
 </html>
