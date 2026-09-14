@@ -1,115 +1,465 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FriendZone - تواصل، العب، استمتع</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>LifeCity — مدينة صغيرة حية</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    background: #1a1d29;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Cairo', sans-serif;
+    color: white;
+    overflow: hidden;
+  }
+
+  .game-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,.5);
+  }
+
+  canvas {
+    display: block;
+    background: #7ec850;
+  }
+
+  /* لوحة المعلومات */
+  .hud {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,.7);
+    padding: 15px 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    min-width: 200px;
+  }
+
+  .hud-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .hud-row:last-child { margin-bottom: 0; }
+  .hud-label { opacity: 0.7; }
+  .hud-value { font-weight: 700; color: #4ade80; }
+
+  /* أزرار التحكم */
+  .controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    gap: 8px;
+  }
+
+  .ctrl-btn {
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,.15);
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: 15px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all .2s;
+  }
+
+  .ctrl-btn:active { transform: scale(0.9); background: rgba(255,255,255,.3); }
+  .ctrl-btn.empty { visibility: hidden; }
+
+  /* معلومات الوقت */
+  .time-display {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0,0,0,.7);
+    padding: 12px 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    font-size: 18px;
+    font-weight: 700;
+  }
+</style>
 </head>
 <body>
-    <!-- شريط التنقل -->
-    <nav class="navbar">
-        <div class="logo">🎈 FriendZone</div>
-        <ul class="nav-links">
-            <li><a href="#home">الرئيسية</a></li>
-            <li><a href="#rooms">الغرف</a></li>
-            <li><a href="#friends">الأصدقاء</a></li>
-            <li><a href="#about">حول</a></li>
-        </ul>
-        <div class="nav-buttons">
-            <button class="btn-login">دخول</button>
-            <button class="btn-signup">تسجيل</button>
-        </div>
-    </nav>
 
-    <!-- قسم البطل -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>مرحباً بك في <span>FriendZone</span></h1>
-            <p>تواصل مع أصدقائك، انضم للغرف الافتراضية، وابنِ صداقات جديدة!</p>
-            <div class="hero-buttons">
-                <button class="btn-primary">ابدأ الآن مجاناً</button>
-                <button class="btn-secondary">استكشف الغرف</button>
-            </div>
-        </div>
-        <div class="hero-image">
-            <div class="floating-avatar" style="--d:0s">😎</div>
-            <div class="floating-avatar" style="--d:1s">🦄</div>
-            <div class="floating-avatar" style="--d:2s">🐱</div>
-            <div class="floating-avatar" style="--d:3s">🎨</div>
-        </div>
-    </section>
+<div class="game-wrapper">
+  <canvas id="game" width="900" height="600"></canvas>
+  
+  <div class="time-display">
+    <span id="timeIcon">☀️</span>
+    <span id="timeText">12:00</span>
+  </div>
 
-    <!-- المميزات -->
-    <section class="features">
-        <h2>لماذا FriendZone؟</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">💬</div>
-                <h3>دردشة فورية</h3>
-                <p>تحدث مع أصدقائك في غرف دردشة عامة أو خاصة</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🏠</div>
-                <h3>غرف افتراضية</h3>
-                <p>انضم لغرف موضوعية وشارك اهتماماتك</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">👥</div>
-                <h3>أصدقاء جدد</h3>
-                <p>تعرف على أشخاص جدد من حول العالم</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎭</div>
-                <h3>أفاتارات مخصصة</h3>
-                <p>صمم شخصيتك الافتراضية الخاصة</p>
-            </div>
-        </div>
-    </section>
+  <div class="hud">
+    <div class="hud-row">
+      <span class="hud-label">💰 المال:</span>
+      <span class="hud-value" id="money">1000</span>
+    </div>
+    <div class="hud-row">
+      <span class="hud-label">⛽ الوقود:</span>
+      <span class="hud-value" id="fuel">100%</span>
+    </div>
+    <div class="hud-row">
+      <span class="hud-label">🚗 السرعة:</span>
+      <span class="hud-value" id="speed">0</span>
+    </div>
+  </div>
 
-    <!-- الغرف النشطة -->
-    <section class="rooms" id="rooms">
-        <h2>الغرف النشطة الآن 🔥</h2>
-        <div class="rooms-grid">
-            <div class="room-card">
-                <div class="room-header" style="background: linear-gradient(135deg,#667eea,#764ba2)">
-                    <span>🎵</span>
-                </div>
-                <div class="room-info">
-                    <h4>عشاق الموسيقى</h4>
-                    <p>👥 42 مستخدم</p>
-                    <button class="btn-join">انضم</button>
-                </div>
-            </div>
-            <div class="room-card">
-                <div class="room-header" style="background: linear-gradient(135deg,#f093fb,#f5576c)">
-                    <span>🎨</span>
-                </div>
-                <div class="room-info">
-                    <h4>الفنانون</h4>
-                    <p>👥 28 مستخدم</p>
-                    <button class="btn-join">انضم</button>
-                </div>
-            </div>
-            <div class="room-card">
-                <div class="room-header" style="background: linear-gradient(135deg,#4facfe,#00f2fe)">
-                    <span>⚽</span>
-                </div>
-                <div class="room-info">
-                    <h4>عشاق الرياضة</h4>
-                    <p>👥 56 مستخدم</p>
-                    <button class="btn-join">انضم</button>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="controls">
+    <button class="ctrl-btn empty"></button>
+    <button class="ctrl-btn" data-key="up">⬆️</button>
+    <button class="ctrl-btn empty"></button>
+    <button class="ctrl-btn" data-key="left">⬅️</button>
+    <button class="ctrl-btn" data-key="down">⬇️</button>
+    <button class="ctrl-btn" data-key="right">➡️</button>
+  </div>
+</div>
 
-    <!-- الفوتر -->
-    <footer>
-        <p>© 2025 FriendZone - جميع الحقوق محفوظة</p>
-    </footer>
+<script>
+// ===== إعداد Canvas =====
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+const W = canvas.width;
+const H = canvas.height;
 
-    <script src="script.js"></script>
+// ===== المدينة: الخريطة =====
+const city = {
+  // الشوارع الأفقية
+  hRoads: [150, 300, 450],
+  // الشوارع العمودية  
+  vRoads: [200, 450, 700],
+  roadWidth: 60,
+  
+  // المباني في كل حي
+  buildings: [
+    // الصف الأول
+    { x: 20,  y: 20,  w: 160, h: 110, color: '#e74c3c', icon: '🏢' },
+    { x: 280, y: 20,  w: 150, h: 110, color: '#9b59b6', icon: '🏥' },
+    { x: 520, y: 20,  w: 160, h: 110, color: '#f39c12', icon: '🏫' },
+    { x: 720, y: 20,  w: 160, h: 110, color: '#3498db', icon: '🏦' },
+    
+    // الصف الثاني
+    { x: 20,  y: 220, w: 160, h: 60,  color: '#16a085', icon: '🏪' },
+    { x: 520, y: 220, w: 160, h: 60,  color: '#e67e22', icon: '☕' },
+    
+    // الصف الثالث
+    { x: 20,  y: 370, w: 160, h: 60,  color: '#c0392b', icon: '⛽' },
+    { x: 280, y: 370, w: 150, h: 60,  color: '#8e44ad', icon: '🍕' },
+    { x: 720, y: 370, w: 160, h: 60,  color: '#27ae60', icon: '🌳' },
+    
+    // الصف الرابع
+    { x: 20,  y: 520, w: 160, h: 60,  color: '#2c3e50', icon: '🏠' },
+    { x: 280, y: 520, w: 150, h: 60,  color: '#34495e', icon: '🏠' },
+    { x: 520, y: 520, w: 160, h: 60,  color: '#2c3e50', icon: '🏠' },
+    { x: 720, y: 520, w: 160, h: 60,  color: '#34495e', icon: '🏠' },
+  ]
+};
+
+// ===== سيارة اللاعب =====
+const playerCar = {
+  x: 230,
+  y: 150,
+  w: 40,
+  h: 24,
+  angle: 0,        // اتجاه السيارة بالدرجات
+  speed: 0,
+  maxSpeed: 5,
+  acceleration: 0.15,
+  friction: 0.94,
+  color: '#e74c3c'
+};
+
+// ===== سيارات المدينة (ذكاء اصطناعي) =====
+const npcCars = [
+  { x: 100, y: 150, w: 40, h: 24, speed: 1.5, dir: 1, color: '#3498db', angle: 0 },
+  { x: 600, y: 300, w: 40, h: 24, speed: 2, dir: 1, color: '#f39c12', angle: 0 },
+  { x: 800, y: 450, w: 40, h: 24, speed: 1.2, dir: -1, color: '#9b59b6', angle: 180 },
+  { x: 400, y: 450, w: 40, h: 24, speed: 1.8, dir: 1, color: '#16a085', angle: 0 },
+  { x: 300, y: 150, w: 40, h: 24, speed: 1.6, dir: -1, color: '#e67e22', angle: 180 },
+];
+
+// ===== حالة اللعبة =====
+const state = {
+  money: 1000,
+  fuel: 100,
+  time: 12 * 60, // بالدقائق، 12:00 ظهراً
+  timeSpeed: 0.5 // كل إطار يمر 0.5 دقيقة
+};
+
+// ===== إدخال لوحة المفاتيح =====
+const keys = { up: false, down: false, left: false, right: false };
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowUp' || e.key === 'w') keys.up = true;
+  if (e.key === 'ArrowDown' || e.key === 's') keys.down = true;
+  if (e.key === 'ArrowLeft' || e.key === 'a') keys.left = true;
+  if (e.key === 'ArrowRight' || e.key === 'd') keys.right = true;
+});
+
+document.addEventListener('keyup', e => {
+  if (e.key === 'ArrowUp' || e.key === 'w') keys.up = false;
+  if (e.key === 'ArrowDown' || e.key === 's') keys.down = false;
+  if (e.key === 'ArrowLeft' || e.key === 'a') keys.left = false;
+  if (e.key === 'ArrowRight' || e.key === 'd') keys.right = false;
+});
+
+// أزرار اللمس
+document.querySelectorAll('.ctrl-btn').forEach(btn => {
+  const key = btn.dataset.key;
+  if (!key) return;
+  
+  const press = e => { e.preventDefault(); keys[key] = true; };
+  const release = e => { e.preventDefault(); keys[key] = false; };
+  
+  btn.addEventListener('mousedown', press);
+  btn.addEventListener('mouseup', release);
+  btn.addEventListener('mouseleave', release);
+  btn.addEventListener('touchstart', press);
+  btn.addEventListener('touchend', release);
+});
+
+// ===== رسم الشوارع =====
+function drawRoads() {
+  // أرضية عشبية
+  ctx.fillStyle = '#7ec850';
+  ctx.fillRect(0, 0, W, H);
+  
+  // إضافة تفاصيل العشب
+  ctx.fillStyle = '#6db844';
+  for (let i = 0; i < 200; i++) {
+    const x = (i * 37) % W;
+    const y = (i * 73) % H;
+    ctx.fillRect(x, y, 2, 4);
+  }
+
+  // الشوارع الأفقية
+  ctx.fillStyle = '#4a4a4a';
+  city.hRoads.forEach(y => {
+    ctx.fillRect(0, y - city.roadWidth/2, W, city.roadWidth);
+  });
+
+  // الشوارع العمودية
+  city.vRoads.forEach(x => {
+    ctx.fillRect(x - city.roadWidth/2, 0, city.roadWidth, H);
+  });
+
+  // خطوط منتصف الشوارع
+  ctx.strokeStyle = '#f1c40f';
+  ctx.lineWidth = 3;
+  ctx.setLineDash([15, 15]);
+  
+  city.hRoads.forEach(y => {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(W, y);
+    ctx.stroke();
+  });
+  
+  city.vRoads.forEach(x => {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, H);
+    ctx.stroke();
+  });
+  
+  ctx.setLineDash([]);
+}
+
+// ===== رسم المباني =====
+function drawBuildings() {
+  city.buildings.forEach(b => {
+    // ظل المبنى
+    ctx.fillStyle = 'rgba(0,0,0,.2)';
+    ctx.fillRect(b.x + 4, b.y + 4, b.w, b.h);
+    
+    // جسم المبنى
+    ctx.fillStyle = b.color;
+    ctx.fillRect(b.x, b.y, b.w, b.h);
+    
+    // إطار
+    ctx.strokeStyle = 'rgba(0,0,0,.3)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(b.x, b.y, b.w, b.h);
+    
+    // أيقونة المبنى
+    ctx.font = '32px serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(b.icon, b.x + b.w/2, b.y + b.h/2);
+  });
+}
+
+// ===== رسم سيارة =====
+function drawCar(car) {
+  ctx.save();
+  ctx.translate(car.x + car.w/2, car.y + car.h/2);
+  ctx.rotate(car.angle * Math.PI / 180);
+  
+  // ظل
+  ctx.fillStyle = 'rgba(0,0,0,.3)';
+  ctx.fillRect(-car.w/2 + 3, -car.h/2 + 3, car.w, car.h);
+  
+  // جسم السيارة
+  ctx.fillStyle = car.color;
+  ctx.beginPath();
+  ctx.roundRect(-car.w/2, -car.h/2, car.w, car.h, 6);
+  ctx.fill();
+  
+  // نوافذ
+  ctx.fillStyle = 'rgba(150,200,255,.8)';
+  ctx.fillRect(-car.w/2 + 8, -car.h/2 + 4, car.w - 16, car.h - 8);
+  
+  // خط منتصف السيارة
+  ctx.fillStyle = 'rgba(0,0,0,.2)';
+  ctx.fillRect(-2, -car.h/2 + 2, 4, car.h - 4);
+  
+  // مصابيح أمامية
+  ctx.fillStyle = '#fff8dc';
+  ctx.beginPath();
+  ctx.arc(car.w/2 - 4, -car.h/2 + 5, 3, 0, Math.PI*2);
+  ctx.arc(car.w/2 - 4, car.h/2 - 5, 3, 0, Math.PI*2);
+  ctx.fill();
+  
+  ctx.restore();
+}
+
+// ===== تحديث سيارة اللاعب =====
+function updatePlayer() {
+  // التسارع
+  if (keys.up) {
+    playerCar.speed = Math.min(playerCar.speed + playerCar.acceleration, playerCar.maxSpeed);
+  } else if (keys.down) {
+    playerCar.speed = Math.max(playerCar.speed - playerCar.acceleration, -playerCar.maxSpeed * 0.5);
+  } else {
+    playerCar.speed *= playerCar.friction;
+    if (Math.abs(playerCar.speed) < 0.01) playerCar.speed = 0;
+  }
+  
+  // التوجيه
+  if (Math.abs(playerCar.speed) > 0.1) {
+    const turnSpeed = 3.5;
+    if (keys.left) playerCar.angle -= turnSpeed * (playerCar.speed > 0 ? 1 : -1);
+    if (keys.right) playerCar.angle += turnSpeed * (playerCar.speed > 0 ? 1 : -1);
+  }
+  
+  // الحركة
+  const rad = playerCar.angle * Math.PI / 180;
+  const newX = playerCar.x + Math.cos(rad) * playerCar.speed;
+  const newY = playerCar.y + Math.sin(rad) * playerCar.speed;
+  
+  // حدود الشاشة
+  if (newX >= 0 && newX <= W - playerCar.w) playerCar.x = newX;
+  if (newY >= 0 && newY <= H - playerCar.h) playerCar.y = newY;
+  
+  // استهلاك الوقود
+  if (Math.abs(playerCar.speed) > 0.5 && state.fuel > 0) {
+    state.fuel = Math.max(0, state.fuel - 0.008);
+  }
+}
+
+// ===== تحديث سيارات NPC =====
+function updateNPCs() {
+  npcCars.forEach(car => {
+    // تحرك أفقي
+    car.x += car.speed * car.dir;
+    
+    // ارتداد من الحدود
+    if (car.x <= 0 || car.x >= W - car.w) {
+      car.dir *= -1;
+      car.angle = car.dir > 0 ? 0 : 180;
+    }
+  });
+}
+
+// ===== رسم دورة اليوم =====
+function drawTimeOverlay() {
+  const hour = state.time / 60;
+  
+  let opacity = 0;
+  let color = 'rgba(0,0,30,';
+  
+  if (hour >= 20 || hour < 5) {
+    opacity = 0.5; // ليل
+  } else if (hour >= 18) {
+    opacity = (hour - 18) / 2 * 0.5; // غروب
+  } else if (hour < 7) {
+    opacity = (7 - hour) / 2 * 0.5; // شروق
+  }
+  
+  if (opacity > 0) {
+    ctx.fillStyle = color + opacity + ')';
+    ctx.fillRect(0, 0, W, H);
+  }
+}
+
+// ===== تحديث الوقت =====
+function updateTime() {
+  state.time += state.timeSpeed;
+  if (state.time >= 24 * 60) state.time = 0;
+  
+  const hours = Math.floor(state.time / 60);
+  const minutes = Math.floor(state.time % 60);
+  
+  document.getElementById('timeText').textContent = 
+    `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+  
+  let icon = '☀️';
+  if (hours >= 6 && hours < 12) icon = '🌅';
+  else if (hours >= 12 && hours < 18) icon = '☀️';
+  else if (hours >= 18 && hours < 20) icon = '🌇';
+  else icon = '🌙';
+  
+  document.getElementById('timeIcon').textContent = icon;
+}
+
+// ===== تحديث HUD =====
+function updateHUD() {
+  document.getElementById('money').textContent = Math.floor(state.money);
+  document.getElementById('fuel').textContent = Math.floor(state.fuel) + '%';
+  document.getElementById('speed').textContent = Math.abs(Math.floor(playerCar.speed * 20));
+}
+
+// ===== الحلقة الرئيسية =====
+function gameLoop() {
+  // 1. تحديث
+  updatePlayer();
+  updateNPCs();
+  updateTime();
+  
+  // 2. رسم
+  drawRoads();
+  drawBuildings();
+  
+  // رسم سيارات NPC
+  npcCars.forEach(drawCar);
+  
+  // رسم سيارة اللاعب
+  drawCar(playerCar);
+  
+  // تأثير الليل/النهار
+  drawTimeOverlay();
+  
+  // 3. تحديث HUD
+  updateHUD();
+  
+  requestAnimationFrame(gameLoop);
+}
+
+// بدء اللعبة
+gameLoop();
+</script>
+
 </body>
 </html>
